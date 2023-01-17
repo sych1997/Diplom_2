@@ -16,6 +16,7 @@ public class CheckOrder {
                 .body("success", equalTo(true))
                 .body("order.number", notNullValue());
     }
+
     @Step("Ответ о неправильном составлении запроса")
     public void responseBadRequest(ValidatableResponse response) {
         response.assertThat()
@@ -23,11 +24,13 @@ public class CheckOrder {
                 .body("success", equalTo(false))
                 .body("message", notNullValue());
     }
+
     @Step("Ответ о том, что сервер не может обработать запрос")
     public void responseServerError(ValidatableResponse response) {
         response.assertThat()
                 .statusCode(HTTP_SERVER_ERROR);
     }
+
     @Step("Ответ о том, что не выполнена авторизация (Код 401)")
     public void responseUnauthorized(ValidatableResponse response) {
         response.assertThat()
@@ -35,6 +38,7 @@ public class CheckOrder {
                 .body("success", equalTo(false))
                 .body("message", notNullValue());
     }
+
     @Step("Ответ об успешном получении списка заказов")
     public void successfulReceiptListOrder(ValidatableResponse response) {
         response.assertThat()

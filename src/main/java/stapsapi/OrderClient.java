@@ -16,6 +16,7 @@ public class OrderClient extends Constants {
                 .get("/ingredients")
                 .body().as(AllIngredients.class);
     }
+
     @Step("Создание заказа авторизованным пользователем")
     public ValidatableResponse creatingOrderAuthorizedUser(CreatingOrders creatingOrders, String accessToken) {
         return spec()
@@ -25,6 +26,7 @@ public class OrderClient extends Constants {
                 .post(ROOT)
                 .then().log().all();
     }
+
     @Step("Создание заказа не авторизованным пользователем")
     public ValidatableResponse creatingOrderUnauthorizedUser(CreatingOrders creatingOrders) {
         return spec()
@@ -33,6 +35,7 @@ public class OrderClient extends Constants {
                 .post(ROOT)
                 .then().log().all();
     }
+
     @Step("Получение заказа авторизованным пользователем")
     public ValidatableResponse getOrdersWithAuthorization(String accessToken) {
         return spec()
@@ -41,6 +44,7 @@ public class OrderClient extends Constants {
                 .get(ROOT)
                 .then().log().all();
     }
+
     @Step("Получение заказа авторизованным пользователем")
     public ValidatableResponse getOrdersWithoutAuthorization(String accessToken) {
         return spec()

@@ -25,6 +25,7 @@ public class AuthorizationUsersTest {
         ValidatableResponse response = user.create(newUser);
         accessToken = checkUser.responseOk(response);
     }
+
     @After
     public void deleteUser() {
         if (!accessToken.equals("null")) {
@@ -32,6 +33,7 @@ public class AuthorizationUsersTest {
             checkUser.responseDeleteOk(response);
         }
     }
+
     @Test
     @DisplayName("Логин под существующим пользователем")
     public void loginUnderExistingUser() {
@@ -39,6 +41,7 @@ public class AuthorizationUsersTest {
         ValidatableResponse response = user.login(cratedUser);
         checkUser.responseOk(response);
     }
+
     @Test
     @DisplayName("Логин с неверным логином")
     public void logWithInvalidEmail() {
@@ -47,6 +50,7 @@ public class AuthorizationUsersTest {
         ValidatableResponse response = user.login(cratedUser);
         checkUser.responseUnauthorized(response);
     }
+
     @Test
     @DisplayName("Логин с неверным паролем")
     public void logWithInvalidPassword() {

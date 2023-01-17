@@ -22,11 +22,11 @@ public class GetOrdersTest {
     private final GenerationUsers generator = new GenerationUsers();
     private final UserClient user = new UserClient();
     private final OrderClient order = new OrderClient();
-    private AllIngredients allIngredients;
-    private CreatingOrders orderCreate;
-    private List<String> ingredients = new ArrayList<>();
     private final CheckUser checkUser = new CheckUser();
     private final CheckOrder checkOrder = new CheckOrder();
+    private AllIngredients allIngredients;
+    private CreatingOrders orderCreate;
+    private final List<String> ingredients = new ArrayList<>();
     private String accessToken = "null";
     private CreatingUsers newUser;
 
@@ -42,6 +42,7 @@ public class GetOrdersTest {
         orderCreate = new CreatingOrders(ingredients);
         order.creatingOrderAuthorizedUser(orderCreate, accessToken);
     }
+
     @After
     public void deleteUser() {
         if (!accessToken.equals("null")) {
@@ -49,12 +50,14 @@ public class GetOrdersTest {
             checkUser.responseDeleteOk(response);
         }
     }
+
     @DisplayName("Проверка получения списка заказов авторизованным пользователем")
     @Test
     public void getOrdersByAuthorizedUser() {
         ValidatableResponse response = order.getOrdersWithAuthorization(accessToken);
         checkOrder.successfulReceiptListOrder(response);
     }
+
     @DisplayName("Проверка получения списка заказов не авторизованным пользователем")
     @Test
     public void getOrdersByUnauthorizedUser() {

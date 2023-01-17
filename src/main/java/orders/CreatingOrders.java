@@ -7,6 +7,7 @@ public class CreatingOrders {
 
     public CreatingOrders() {
     }
+
     public CreatingOrders(List<String> ingredients) {
         this.ingredients = ingredients;
     }
@@ -14,6 +15,7 @@ public class CreatingOrders {
     public List<String> getIngredients() {
         return ingredients;
     }
+
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }

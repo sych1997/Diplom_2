@@ -17,6 +17,7 @@ public class UserClient extends Constants {
                 .post(ROOT + "/register")
                 .then().log().all();
     }
+
     @Step("Удаление пользователя")
     public ValidatableResponse delete(String accessToken) {
         return spec()
@@ -25,6 +26,7 @@ public class UserClient extends Constants {
                 .delete(ROOT + "/user")
                 .then().log().all();
     }
+
     @Step("Авторизация пользователя")
     public ValidatableResponse login(AuthorizationUsers login) {
         return spec()
@@ -33,6 +35,7 @@ public class UserClient extends Constants {
                 .post(ROOT + "/login")
                 .then().log().all();
     }
+
     @Step("Изменение данных авторизованного пользователя")
     public ValidatableResponse changeDataAuthorizedUser(CreatingUsers user, String accessToken) {
         return spec()
@@ -42,6 +45,7 @@ public class UserClient extends Constants {
                 .patch(ROOT + "/user")
                 .then().log().all();
     }
+
     @Step("Изменение данных не авторизованного пользователя")
     public ValidatableResponse changeDataUnauthorizedUser(CreatingUsers user) {
         return spec()

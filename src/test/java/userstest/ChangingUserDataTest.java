@@ -24,6 +24,7 @@ public class ChangingUserDataTest {
         ValidatableResponse response = user.create(newUser);
         accessToken = checkUser.responseOk(response);
     }
+
     @After
     public void deleteUser() {
         if (!accessToken.equals("null")) {
@@ -31,12 +32,14 @@ public class ChangingUserDataTest {
             checkUser.responseDeleteOk(response);
         }
     }
+
     @Test
     @DisplayName("Проверка изменения данных у авторизованного пользователя")
     public void changingDataAuthorizedUser() {
         ValidatableResponse response = user.changeDataAuthorizedUser(newUser, accessToken);
         checkUser.responseOk(response);
     }
+
     @Test
     @DisplayName("Проверка изменения данных у не авторизованного пользователя")
     public void changingDataUnauthorizedUser() {

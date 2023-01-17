@@ -22,6 +22,7 @@ public class CreatingUsersTest {
             checkUser.responseDeleteOk(response);
         }
     }
+
     @Test
     @DisplayName("Создание уникального пользователя")
     public void creatingUniqueUser() {
@@ -29,6 +30,7 @@ public class CreatingUsersTest {
         ValidatableResponse response = user.create(newUser);
         accessToken = checkUser.responseOk(response);
     }
+
     @Test
     @DisplayName("Создание не уникального пользователя")
     public void creatingNotUniqueUser() {
@@ -38,6 +40,7 @@ public class CreatingUsersTest {
         ValidatableResponse responseTwo = user.create(newUser);
         checkUser.responseForbidden(responseTwo);
     }
+
     @Test
     @DisplayName("Создание пользователя без эмейла")
     public void сreatingUserWithoutEmail() {
@@ -46,6 +49,7 @@ public class CreatingUsersTest {
         ValidatableResponse response = user.create(newUser);
         checkUser.responseForbidden(response);
     }
+
     @Test
     @DisplayName("Создание пользователя без пароля")
     public void сreatingUserWithoutPassword() {
@@ -54,6 +58,7 @@ public class CreatingUsersTest {
         ValidatableResponse response = user.create(newUser);
         checkUser.responseForbidden(response);
     }
+
     @Test
     @DisplayName("Создание пользователя без имени")
     public void сreatingUserWithoutName() {

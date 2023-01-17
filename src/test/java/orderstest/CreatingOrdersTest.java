@@ -22,11 +22,11 @@ public class CreatingOrdersTest {
     private final GenerationUsers generator = new GenerationUsers();
     private final UserClient user = new UserClient();
     private final OrderClient order = new OrderClient();
-    private AllIngredients allIngredients;
-    private CreatingOrders orderCreate;
-    private List<String> ingredients = new ArrayList<>();
     private final CheckUser checkUser = new CheckUser();
     private final CheckOrder checkOrder = new CheckOrder();
+    private AllIngredients allIngredients;
+    private CreatingOrders orderCreate;
+    private final List<String> ingredients = new ArrayList<>();
     private String accessToken = "null";
     private CreatingUsers newUser;
 
@@ -41,6 +41,7 @@ public class CreatingOrdersTest {
         ingredients.add(allIngredients.getData().get(3).get_id());
         orderCreate = new CreatingOrders(ingredients);
     }
+
     @After
     public void deleteUser() {
         if (!accessToken.equals("null")) {
@@ -48,18 +49,21 @@ public class CreatingOrdersTest {
             checkUser.responseDeleteOk(response);
         }
     }
+
     @DisplayName("Создание заказа авторизованным пользователем")
     @Test
     public void creatingOrderWithAuthorization() {
         ValidatableResponse response = order.creatingOrderAuthorizedUser(orderCreate, accessToken);
         checkOrder.successfulCreationOrder(response);
     }
+
     @DisplayName("Создание заказа не авторизованным пользователем")
     @Test
     public void creatingOrderWithUnauthorization() {
         ValidatableResponse response = order.creatingOrderUnauthorizedUser(orderCreate);
         checkOrder.successfulCreationOrder(response);
     }
+
     @DisplayName("Создание заказа авторизованным пользователем без ингредиентов")
     @Test
     public void creatingOrderWithAuthorizationWithoutIngredients() {
@@ -67,6 +71,7 @@ public class CreatingOrdersTest {
         ValidatableResponse response = order.creatingOrderAuthorizedUser(newOrderCreate, accessToken);
         checkOrder.responseBadRequest(response);
     }
+
     @DisplayName("Создание заказа авторизованным пользователем с неправильными ингредиентами")
     @Test
     public void creatingOrderWithAuthorizationWithWrongIngredients() {
